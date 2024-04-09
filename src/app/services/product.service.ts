@@ -11,7 +11,7 @@ export class ProductService {
     console.log('fetching all products');
     return this.http.get('https://fakestoreapi.com/products');
   }
-  getProductsWithCategory(category : string){
+  getProductsByCategory(category : string){
     console.log(`fetching products with category : ${category}`);
     return this.http.get('https://fakestoreapi.com/products/category/'.concat(category));
   }

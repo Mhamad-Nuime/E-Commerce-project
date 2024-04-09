@@ -62,7 +62,7 @@ export class ProductsComponent implements OnInit,OnDestroy {
         this.products = value;
       })
     } else {
-      this.product$ = this.getProductsWithCategory(this.selectedCategory).subscribe(value => {
+      this.product$ = this.getProductsByCategory(this.selectedCategory).subscribe(value => {
         this.products = value;
       });
     }
@@ -74,7 +74,7 @@ export class ProductsComponent implements OnInit,OnDestroy {
     console.log('from component')
     return this.productService.getAllProduct();
   }
-  getProductsWithCategory(c : string){
+  getProductsByCategory(c : string){
     return this.productService.getProductsByCategory(c);
   }
   addCategory(c: string){
