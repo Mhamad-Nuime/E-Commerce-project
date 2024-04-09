@@ -1,34 +1,84 @@
-import { Component } from '@angular/core';
-
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { ProductService } from '../../services/product.service';
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, FormsModule],
   template: `
-    <section class="product">
-      <div class="product-container">
-      <div class="product-wrap">
-        <h4 class="product-title">Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops</h4>
-        <hr>
-        <p class="product-category"><span>Category: </span>men's clothing</p>
-        <img src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg" alt="the product image" width='200' height='200'>
-        <hr>
-        <p class="product-description">Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday</p>
-        <div class="price-count-rate">
-          <p><span>Price: </span>109.95$</p>
-          <div class="count-rate">
-          <p id="count"><span>Count: </span>104</p>
-            <p id="rate">3.9
-              <img src="assets/heart.svg" alt="heart icon">
-            </p>
+    <main>
+      <section class="filter">
+        <label for="categories">Cotegories
+          <select name="categories" id="categories" [(ngModel)]='this.selectedCategory' (ngModelChange)="this.ngOnInit()">
+              <option [value]="category" *ngFor="let category of this.categories">{{category}}</option>
+          </select>
+        </label>
+      </section>
+      <div class="products-list-container" onload="">
+        <!-- <section class="product" *ngFor="let p of this.products">
+        <div class="product-container">
+        <div class="product-wrap">
+          <h4 class="product-title">{{p.title}}</h4>
+          <p class="product-category"><span>Category: </span>{{p.category}}</p>
+          <hr>
+          <img [src]="p.image" alt="the product image" width='200' height='200'>
+          <hr>
+          <p class="product-description">{{p.description}}</p>
+          <div class="price-count-rate">
+            <p><span>Price: </span>{{p.price}}</p>
+            <div class="count-rate">
+            <p id="count"><span>Count: </span>{{p.rating.count}}</p>
+              <p id="rate">{{p.rating.rate}}
+                <img src="assets/heart.svg" alt="heart icon">
+              </p>
+            </div>
           </div>
         </div>
+        </div>
+      </section> -->
+      <section class="loading-spinner">
+        <div class="spinner">
+          <div class="ball 1"></div>
+          <div class="ball 2"></div>
+          <div class="ball 3"></div>
+        </div>
+      </section>
       </div>
-      </div>
-    </section>
+    </main>
   `,
-  styleUrl: './products.component.css'
+  styleUrl: './products.component.css',
+  providers: [ProductService],
 })
-export class ProductsComponent {
-
+export class ProductsComponent implements OnInit,OnDestroy {
+  products : any = null ;
+  product$ : any = null;
+  categories: string[]= ["All", "men's clothing", "women's clothing", "jewelery", "electronics"];
+  selectedCategory: string = 'All';
+  productService = inject(ProductService);
+  ngOnInit(): void {
+    if (this.selectedCategory == 'All'){
+      this.product$ =this.getProducts().subscribe(value => {
+        this.products = value;
+      })
+    } else {
+      this.product$ = this.getProductsWithCategory(this.selectedCategory).subscribe(value => {
+        this.products = value;
+      });
+    }
+  }
+  ngOnDestroy(): void {
+    this.product$.unsubscribe();
+  }
+  getProducts(){
+    console.log('from component')
+    return this.productService.getAllProduct();
+  }
+  getProductsWithCategory(c : string){
+    return this.productService.getProductsByCategory(c);
+  }
+  addCategory(c: string){
+    this.categories.push(c);
+    console.log(`"${c}" category has been added successfully`);
+  }
 }
