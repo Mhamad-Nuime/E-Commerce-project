@@ -2,6 +2,8 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ProductService } from '../../services/product.service';
+import { LoaderService } from './../../services/loader.service';
+
 @Component({
   selector: 'app-products',
   standalone: true,
@@ -9,14 +11,20 @@ import { ProductService } from '../../services/product.service';
   template: `
     <main>
       <section class="filter">
-        <label for="categories">Cotegories
-          <select name="categories" id="categories" [(ngModel)]='this.selectedCategory' (ngModelChange)="this.ngOnInit()">
-              <option [value]="category" *ngFor="let category of this.categories">{{category}}</option>
-          </select>
-        </label>
+        <label for="categories">Cotegories</label>
+        <select name="categories" id="categories" [(ngModel)]='this.selectedCategory' (ngModelChange)="this.ngOnInit()">
+            <option [value]="category" *ngFor="let category of this.categories">{{category}}</option>
+        </select>
+      </section>
+      <section class="loading-spinner appear " #spinner *ngIf='this.loaderService.isLoad | async'>
+        <div class="spinner">
+          <div class="ball 1"></div>
+          <div class="ball 2"></div>
+          <div class="ball 3"></div>
+        </div>
       </section>
       <div class="products-list-container" onload="">
-        <!-- <section class="product" *ngFor="let p of this.products">
+        <section class="product" *ngFor="let p of this.products">
         <div class="product-container">
         <div class="product-wrap">
           <h4 class="product-title">{{p.title}}</h4>
@@ -36,26 +44,20 @@ import { ProductService } from '../../services/product.service';
           </div>
         </div>
         </div>
-      </section> -->
-      <section class="loading-spinner">
-        <div class="spinner">
-          <div class="ball 1"></div>
-          <div class="ball 2"></div>
-          <div class="ball 3"></div>
-        </div>
       </section>
       </div>
     </main>
   `,
   styleUrl: './products.component.css',
-  providers: [ProductService],
+  providers: [],
 })
-export class ProductsComponent implements OnInit,OnDestroy {
+export class ProductsComponent implements OnInit, OnDestroy {
   products : any = null ;
   product$ : any = null;
   categories: string[]= ["All", "men's clothing", "women's clothing", "jewelery", "electronics"];
   selectedCategory: string = 'All';
   productService = inject(ProductService);
+  loaderService= inject(LoaderService);
   ngOnInit(): void {
     if (this.selectedCategory == 'All'){
       this.product$ =this.getProducts().subscribe(value => {
@@ -76,9 +78,5 @@ export class ProductsComponent implements OnInit,OnDestroy {
   }
   getProductsByCategory(c : string){
     return this.productService.getProductsByCategory(c);
-  }
-  addCategory(c: string){
-    this.categories.push(c);
-    console.log(`"${c}" category has been added successfully`);
   }
 }

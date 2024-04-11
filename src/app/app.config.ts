@@ -1,11 +1,16 @@
 import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
-
 import { routes } from './app.routes';
-
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { importProvidersFrom } from '@angular/core';
+import { InterceptorService } from './services/interceptor.service';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), importProvidersFrom(HttpClientModule)]
+  providers: [provideRouter(routes), importProvidersFrom(HttpClientModule),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true,
+    }
+  ]
 };
