@@ -1,8 +1,14 @@
 header{
+  position: sticky;
+  z-index: 10;
+  background-color: white;
+  top: 0;
+  left:0;
+  right:0;
   display:flex;
   align-items: center;
   justify-content: space-between;
-  margin-block-start: 8px;
+  padding-block-start: 8px;
   padding-inline: 20px;
   padding-block-end: 10px;
   box-shadow: rgba(64, 62, 177, 0.244) 0px 1px 2px;
@@ -19,12 +25,19 @@ nav ul{
     border-radius: 4px;
     color: rgb(64 62 177);
   }
-  & li:hover{
+  & li{
+    cursor: pointer;
+  }
+  & li:not([class='active']):hover{
     background-color: rgb(64 62 177);
     border-color: white ;
     color: white;
     cursor: pointer;
   }
+}
+.active{
+  color: white !important;
+  background-color: rgb(64 62 177);
 }
 main.page-wrap{
   padding-inline: 20px;
