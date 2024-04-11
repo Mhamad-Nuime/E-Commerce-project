@@ -23,7 +23,7 @@ import { LoaderService } from './../../services/loader.service';
           <div class="ball 3"></div>
         </div>
       </section>
-      <div class="products-list-container" onload="">
+      <div class="products-list-container">
         <section class="product" *ngFor="let p of this.products">
         <div class="product-container">
         <div class="product-wrap">
@@ -34,7 +34,7 @@ import { LoaderService } from './../../services/loader.service';
           <hr>
           <p class="product-description">{{p.description}}</p>
           <div class="price-count-rate">
-            <p><span>Price: </span>{{p.price}}</p>
+            <p><span>Price: </span>{{p.price}}$</p>
             <div class="count-rate">
             <p id="count"><span>Count: </span>{{p.rating.count}}</p>
               <p id="rate">{{p.rating.rate}}

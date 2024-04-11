@@ -1,3 +1,9 @@
+main{
+  margin-bottom: 50px;
+}
+p{
+  margin-bottom: 0;
+}
 section.filter{
   margin-block: 30px;
   display: flex;
