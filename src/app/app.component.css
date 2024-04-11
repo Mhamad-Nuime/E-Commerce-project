@@ -13,6 +13,20 @@ header{
   padding-block-end: 10px;
   box-shadow: rgba(64, 62, 177, 0.244) 0px 1px 2px;
 }
+div[aria-label="logo"]{
+  display: flex;
+  color: rgb(64 62 177);
+  & h1{
+    padding-left: 40px;
+    margin: 0;
+  }
+}
+.dancing-script {
+  font-family: "Dancing Script", cursive;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: bold;
+}
 nav ul{
   display: flex;
   align-items: center;

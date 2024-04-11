@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
     <header>
       <div aria-label="logo">
         <img src="assets/logo.svg" alt="the website logo" width="40" height="40">
+        <h1 class="website-name dancing-script">Coolness</h1>
       </div>
       <nav>
         <ul>

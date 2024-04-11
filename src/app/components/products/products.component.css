@@ -97,7 +97,7 @@ h4,p span{
 section.loading-spinner.appear{
   position: absolute;
   z-index: 10;
-  top: 10%;
+  top: 13%;
   left: 47.2%;
   & div.spinner {
     display: flex;
