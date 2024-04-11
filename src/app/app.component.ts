@@ -14,8 +14,9 @@ import { RouterModule } from '@angular/router';
       </div>
       <nav>
         <ul>
-          <li routerLink="products">products</li>
-          <li routerLink="carts">carts</li>
+          <li routerLink="products" routerLinkActive="active">products</li>
+          <li routerLink="carts"
+          routerLinkActive="active">carts</li>
         </ul>
       </nav>
     </header>
