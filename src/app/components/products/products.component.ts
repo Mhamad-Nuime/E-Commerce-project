@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ProductService } from '../../services/product.service';
 import { LoaderService } from './../../services/loader.service';
-
+import { ProductComponent } from '../product/product.component';
+import { Product } from '../../interfaces/product';
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ProductComponent],
   template: `
     <main>
       <section class="filter">
@@ -24,27 +25,7 @@ import { LoaderService } from './../../services/loader.service';
         </div>
       </section>
       <div class="products-list-container">
-        <section class="product" *ngFor="let p of this.products">
-        <div class="product-container">
-        <div class="product-wrap">
-          <h4 class="product-title">{{p.title}}</h4>
-          <p class="product-category"><span>Category: </span>{{p.category}}</p>
-          <hr>
-          <img [src]="p.image" alt="the product image" width='200' height='200'>
-          <hr>
-          <p class="product-description">{{p.description}}</p>
-          <div class="price-count-rate">
-            <p><span>Price: </span>{{p.price}}$</p>
-            <div class="count-rate">
-            <p id="count"><span>Count: </span>{{p.rating.count}}</p>
-              <p id="rate">{{p.rating.rate}}
-                <img src="assets/heart.svg" alt="heart icon">
-              </p>
-            </div>
-          </div>
-        </div>
-        </div>
-      </section>
+        <app-product *ngFor="let product of this.products" [product]='product'></app-product>
       </div>
     </main>
   `,
@@ -52,7 +33,7 @@ import { LoaderService } from './../../services/loader.service';
   providers: [],
 })
 export class ProductsComponent implements OnInit, OnDestroy {
-  products : any = null ;
+  products : Product[] = [] ;
   product$ : any = null;
   categories: string[]= ["All", "men's clothing", "women's clothing", "jewelery", "electronics"];
   selectedCategory: string = 'All';
@@ -73,7 +54,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.product$.unsubscribe();
   }
   getProducts(){
-    console.log('from component')
     return this.productService.getAllProduct();
   }
   getProductsByCategory(c : string){

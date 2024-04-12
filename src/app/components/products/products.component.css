@@ -31,69 +31,6 @@ select:hover{
   flex-flow: row wrap;
   gap: 10px;
 }
-section.product{
-  perspective: 2px;
-  perspective-origin: center;
-}
-.product-container{
-  width: 300px;
-  display: flex;
-  justify-content: center;
-  box-shadow: #3f3dae 0px 0px 1.5px;
-  border-radius: 8px;
-}
-.product-container:hover{
-  transform: translate3d(0, 0, 0.02px);
-  box-shadow: #3f3dae 0px 0px 3px;
-  transition: transform  0.3s;
-}
-.product-wrap{
-  width: 280px;
-  display: flex;
-  flex-flow: column nowrap;
-}
-h4{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  margin-top: 10px;
-  height: 110px;
-  overflow: hidden;
-}
-hr{
-  width:80%;
-  margin: auto;
-  margin-block: 10px;
-  border-color: #3f3dae;
-  /* border-top-width: 0px !important; */
-}
-img{
-  align-self: center;
-  margin-bottom: 10px;
-}
-p.product-category{
-  padding-left:10px;
-  margin-bottom: 10px;
-}
-p.product-description{
-  margin-bottom: 20px;
-  word-break: break-all;
-  height: 100px;
-  overflow-y: hidden;
-}
-.count-rate{
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 5px;
-}
-p#rate{
-  display: flex;
-  justify-content: center;
-}
-h4,p span{
-  color:#3f3dae;
-}
 section.loading-spinner.appear{
   position: absolute;
   z-index: 10;
