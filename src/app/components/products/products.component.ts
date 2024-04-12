@@ -2,13 +2,13 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ProductService } from '../../services/product.service';
-import { LoaderService } from './../../services/loader.service';
 import { ProductComponent } from '../product/product.component';
+import { LoaderComponent } from '../loader/loader.component';
 import { Product } from '../../interfaces/product';
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule, FormsModule, ProductComponent],
+  imports: [CommonModule, FormsModule, ProductComponent, LoaderComponent],
   template: `
     <main>
       <section class="filter">
@@ -17,13 +17,7 @@ import { Product } from '../../interfaces/product';
             <option [value]="category" *ngFor="let category of this.categories">{{category}}</option>
         </select>
       </section>
-      <section class="loading-spinner appear " #spinner *ngIf='this.loaderService.isLoad | async'>
-        <div class="spinner">
-          <div class="ball 1"></div>
-          <div class="ball 2"></div>
-          <div class="ball 3"></div>
-        </div>
-      </section>
+      <app-loader></app-loader>
       <div class="products-list-container">
         <app-product *ngFor="let product of this.products" [product]='product'></app-product>
       </div>
@@ -38,7 +32,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
   categories: string[]= ["All", "men's clothing", "women's clothing", "jewelery", "electronics"];
   selectedCategory: string = 'All';
   productService = inject(ProductService);
-  loaderService= inject(LoaderService);
   ngOnInit(): void {
     if (this.selectedCategory == 'All'){
       this.product$ =this.getProducts().subscribe(value => {
