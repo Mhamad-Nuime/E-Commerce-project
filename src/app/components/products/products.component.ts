@@ -5,10 +5,13 @@ import { ProductService } from '../../services/product.service';
 import { ProductComponent } from '../product/product.component';
 import { LoaderComponent } from '../loader/loader.component';
 import { Product } from '../../interfaces/product';
+import { LoaderDirective } from '../../directives/loader.directive';
+import { LoaderService } from '../../services/loader.service';
+
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule, FormsModule, ProductComponent, LoaderComponent],
+  imports: [CommonModule, FormsModule, ProductComponent, LoaderComponent,LoaderDirective],
   template: `
     <main>
       <section class="filter">
@@ -17,7 +20,7 @@ import { Product } from '../../interfaces/product';
             <option [value]="category" *ngFor="let category of this.categories">{{category}}</option>
         </select>
       </section>
-      <app-loader></app-loader>
+      <app-loader *hidden="loaderService.isLoad | async" ></app-loader>
       <div class="products-list-container">
         <app-product *ngFor="let product of this.products" [product]='product'></app-product>
       </div>
@@ -29,6 +32,7 @@ import { Product } from '../../interfaces/product';
 export class ProductsComponent implements OnInit, OnDestroy {
   products : Product[] = [] ;
   product$ : any = null;
+  loaderService= inject(LoaderService);
   categories: string[]= ["All", "men's clothing", "women's clothing", "jewelery", "electronics"];
   selectedCategory: string = 'All';
   productService = inject(ProductService);

@@ -1,12 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoaderService } from '../../services/loader.service';
 @Component({
   selector: 'app-loader',
   standalone: true,
   imports: [CommonModule],
   template: `
-    <section class="loading-spinner appear " *ngIf='this.loaderService.isLoad | async'>
+    <section class="loading-spinner appear ">
         <div class="spinner">
           <div class="ball 1"></div>
           <div class="ball 2"></div>
@@ -17,5 +16,4 @@ import { LoaderService } from '../../services/loader.service';
   styleUrl: './loader.component.css'
 })
 export class LoaderComponent {
-  loaderService= inject(LoaderService);
 }
