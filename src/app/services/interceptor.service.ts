@@ -13,11 +13,11 @@ export class InterceptorService implements HttpInterceptor {
   loaderService = inject(LoaderService);
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     console.log(`catch the request before be sending.....`)
-    this.loaderService.isLoad.next(true);
+    this.loaderService.isLoad.next(false);
     return next.handle(req).pipe(
       finalize(
         () => {
-          this.loaderService.isLoad.next(false);
+          this.loaderService.isLoad.next(true);
         }
       )
     )
