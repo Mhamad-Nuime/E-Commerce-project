@@ -11,6 +11,7 @@ section.filter{
 label[for=categories]{
   padding-right: 20px;
   color:#3f3dae;
+  align-self: center;
 }
 mat-select{
   box-sizing: content-box;
