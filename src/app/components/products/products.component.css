@@ -12,20 +12,17 @@ label[for=categories]{
   padding-right: 20px;
   color:#3f3dae;
 }
-select{
-  height: 30px;
-  width: 180px;
+mat-select{
+  box-sizing: content-box;
+  /* height: 30px; */
+  width: 230px;
   border-radius: 4px;
-  border-color: #3f3dae;
-  color: #ffff;
-  background-color: #3f3dae;
-  vertical-align: text-top;
-  padding-left: 10px;
-}
-select:hover{
-  background-color: white;
+  border: solid 1px #3f3dae;
+  /* border-color: #3f3dae; */
   color: #3f3dae;
+  padding: 3px 10px 4px 5px;
 }
+
 .products-list-container{
   display: flex;
   flex-flow: row wrap;

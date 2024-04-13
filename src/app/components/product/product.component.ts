@@ -9,17 +9,17 @@ import { Product } from '../../interfaces/product';
     <section class="product" *ngIf='product'>
         <div class="product-container">
         <div class="product-wrap">
-          <h4 class="product-title">{{product?.title}}</h4>
-          <p class="product-category"><span>Category: </span>{{product?.category}}</p>
+          <h4 class="product-title">{{product.title}}</h4>
+          <p class="product-category"><span>Category: </span>{{product.category}}</p>
           <hr>
-          <img [src]="product?.image" alt="the product image" width='200' height='200'>
+          <img [src]="product.image" alt="the product image" width='200' height='200'>
           <hr>
-          <p class="product-description">{{product?.description}}</p>
+          <p class="product-description">{{product.description}}</p>
           <div class="price-count-rate">
-            <p><span>Price: </span>{{product?.price}}$</p>roduct
+            <p><span>Price: </span>{{product.price}}$</p>
             <div class="count-rate">
-            <p id="count"><span>Count: </span>{{product?.rating?.count}}</p>
-              <p id="rate">{{product?.rating?.rate}}
+            <p id="count"><span>Count: </span>{{product.rating.count}}</p>
+              <p id="rate">{{product.rating.rate}}
                 <img src="assets/heart.svg" alt="heart icon">
               </p>
             </div>

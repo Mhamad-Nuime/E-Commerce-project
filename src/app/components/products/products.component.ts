@@ -7,18 +7,18 @@ import { LoaderComponent } from '../loader/loader.component';
 import { Product } from '../../interfaces/product';
 import { LoaderDirective } from '../../directives/loader.directive';
 import { LoaderService } from '../../services/loader.service';
-
+import {MatSelectModule} from '@angular/material/select';
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule, FormsModule, ProductComponent, LoaderComponent,LoaderDirective],
+  imports: [CommonModule, FormsModule, ProductComponent, LoaderComponent,LoaderDirective, MatSelectModule],
   template: `
     <main>
       <section class="filter">
         <label for="categories">Cotegories</label>
-        <select name="categories" id="categories" [(ngModel)]='this.selectedCategory' (ngModelChange)="this.ngOnInit()">
-            <option [value]="category" *ngFor="let category of this.categories">{{category}}</option>
-        </select>
+        <mat-select name="categories" id="categories" [(ngModel)]='this.selectedCategory' (ngModelChange)="this.ngOnInit()">
+            <mat-option [value]="category" *ngFor="let category of this.categories">{{category}}</mat-option>
+        </mat-select>
       </section>
       <app-loader *hidden="loaderService.isLoad | async" ></app-loader>
       <div class="products-list-container">
