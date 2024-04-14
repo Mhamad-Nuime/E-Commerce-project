@@ -23,6 +23,7 @@ import {MatSelectModule} from '@angular/material/select';
       <app-loader *hidden="loaderService.isLoad | async" ></app-loader>
       <div class="products-list-container">
         <app-product *ngFor="let product of this.products" [product]='product'></app-product>
+        <h1 class="error" *ngIf='this.error'>Sorry, Something Goes Wrong !</h1>
       </div>
     </main>
   `,
@@ -31,6 +32,7 @@ import {MatSelectModule} from '@angular/material/select';
 })
 export class ProductsComponent implements OnInit, OnDestroy {
   products : Product[] = [] ;
+  error : string = '';
   product$ : any = null;
   loaderService= inject(LoaderService);
   categories: string[]= ["All", "men's clothing", "women's clothing", "jewelery", "electronics"];
@@ -38,9 +40,13 @@ export class ProductsComponent implements OnInit, OnDestroy {
   productService = inject(ProductService);
   ngOnInit(): void {
     if (this.selectedCategory == 'All'){
-      this.product$ =this.getProducts().subscribe(value => {
+      this.product$ =this.getProducts().subscribe({next : value => {
         this.products = value;
-      })
+      },
+      error : error => {
+        console.error(error);
+        this.error = error;
+      }})
     } else {
       this.product$ = this.getProductsByCategory(this.selectedCategory).subscribe(value => {
         this.products = value;

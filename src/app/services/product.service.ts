@@ -16,4 +16,8 @@ export class ProductService {
     console.log(`fetching products with category : ${category}`);
     return this.http.get<Product[]>(environment.baseAPI + 'products/category/'+ category);
   }
+  getProductById(id : string){
+    console.log(`fetching product with id : ${id}`);
+    return this.http.get<Product>(`https://fakestoreapi.com/products/${id}`);
+  }
 }
