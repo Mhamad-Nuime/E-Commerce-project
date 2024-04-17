@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Product } from '../../interfaces/product';
 import { MatButtonModule } from '@angular/material/button';
@@ -31,7 +31,7 @@ import { RouterOutlet } from '@angular/router';
           <div class="price-count-rate">
             <div class="price-purshes">
               <p id="price"><span>Price: </span>{{ product.price }}$</p>
-              <button mat-stroked-button>add to cart</button>
+              <button mat-stroked-button (click)="this.addToCart()">add to cart</button>
             </div>
             <div class="count-rate">
               <p id="count"><span>Count: </span>{{ product.rating.count }}</p>
@@ -49,4 +49,10 @@ import { RouterOutlet } from '@angular/router';
 })
 export class ProductComponent {
   @Input() product: Product | null = null;
+
+  @Output('addtocart') e = new EventEmitter();
+
+  addToCart() : void {
+    this.e.emit(this.product);
+  }
 }

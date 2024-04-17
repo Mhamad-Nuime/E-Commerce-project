@@ -1,5 +1,8 @@
-import { Directive, OnChanges, TemplateRef, ViewContainerRef, inject, SimpleChanges, Input} from '@angular/core';
+import { Directive, OnChanges, TemplateRef, ViewContainerRef, inject, SimpleChanges, Input, Injectable} from '@angular/core';
 
+@Injectable({
+  providedIn: 'root',
+})
 @Directive({
   selector: '[hidden]',
   standalone: true

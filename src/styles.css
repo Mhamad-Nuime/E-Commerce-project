@@ -1,20 +1,28 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   letter-spacing: 0.5px;
   line-height: 1.5;
 }
-p{
+p {
   font-weight: 100;
   font-size: 1rem;
 }
 
-ul{
+ul {
   list-style-type: none !important;
 }
-a{
+a {
   text-decoration: none;
 }
 
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.popup-open{
+  height: 100svh;
+  overflow-y: hidden;
+  padding-right: 15px;
+}
