@@ -1,0 +1,106 @@
+section.popup-wrap{
+  display: flex;
+  flex-direction: column;
+  box-shadow: #98989d 0px 0px 5px;
+  padding: 40px;
+  border-radius: 8px;
+  background-color: white;
+}
+div.close-button-wrap{
+  display: flex;
+  position: relative;
+  justify-content: end;
+  right: 0;
+  top:0;
+  padding: 1px;
+}
+button#close-button{
+  appearance: none;
+  padding: 10px;
+  background: transparent;
+  border: 0 ;
+  box-shadow: rgb(46, 45, 77) 0px 0px 3px;
+  border-radius: 4px;
+}
+button#close-button:hover{
+  box-shadow: inset #3f3dae8c 0px 0px 4px;
+}
+h3{
+  text-align: center;
+  padding-bottom: 40px;
+  color:#3f3dae;
+  text-shadow: rgb(159, 153, 153) 1px 1px 1px;
+  box-shadow: #7271b8 0px 1px 0.2px;
+}
+table{
+  box-shadow: #7271b8 0px 1px 0.2px;
+  margin-bottom: 30px;
+}
+td,th{
+  width: fit-content;
+  min-width: 120px;
+  height: fit-content;
+  letter-spacing: 1px;
+  font-weight: 100;
+  padding: 5px;
+  text-align: center;
+  border: 15px solid white;
+}
+th{
+  background-color:#3f3dae;
+  color: white;
+}
+td{
+  color:#3f3dae;
+}
+
+td#quantity-operations{
+  height: 174px;
+  display: flex;
+  align-items: center;
+}
+td#quantity-operations input{
+  appearance: none;
+  margin-inline: 30px;
+  box-shadow: #3f3dae inset 0px 0px 3px;
+  border: 0px;
+  border-radius: 8px;
+  text-align: center;
+}
+td#quantity-operations input:focus{
+  appearance: none;
+  outline: none;
+}
+td#quantity-operations input.ng-valid.ng-dirty.ng-touched{
+  box-shadow: #2c9323  0px 0px 5px;
+}
+td#quantity-operations input.ng-invalid.ng-dirty.ng-touched{
+  box-shadow: #e5131a  0px 0px 5px;
+}
+td#quantity-operations button{
+  border: none;
+  background-color: #3f3dae;
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 20px;
+  box-shadow: rgb(159, 153, 153) 0px 0px 4px;
+}
+div.conform-button-wrap{
+  display: flex;
+  flex-direction: row-reverse;
+}
+button#conform-button{
+  border: none;
+  background-color: #3f3dae;
+  color: white;
+  width: fit-content;
+  height: fit-content;
+  padding-inline: 10px;
+  padding-block: 4px;
+  border-radius: 4px;
+  box-shadow: rgb(159, 153, 153) 0px 0px 2px;
+}
+button#conform-button:hover{
+  box-shadow: inset rgb(22, 21, 21) 0px 0px 5px;
+}
